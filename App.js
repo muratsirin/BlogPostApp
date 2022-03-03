@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./src/infrastructure/theme";
 import { PostsScreen } from "./src/features/posts/screens/posts.screen";
+import { PostsContextProvider } from "./src/services/posts/posts.context";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -24,7 +25,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <PostsScreen />
+        <PostsContextProvider>
+          <PostsScreen />
+        </PostsContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </>
