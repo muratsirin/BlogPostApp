@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./src/infrastructure/theme";
 import { PostsScreen } from "./src/features/posts/screens/posts.screen";
 import { PostsContextProvider } from "./src/services/posts/posts.context";
+import { Navigation } from "./src/infrastructure/navigation";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -25,9 +26,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <PostsContextProvider>
-          <PostsScreen />
-        </PostsContextProvider>
+        <Navigation />
       </ThemeProvider>
       <StatusBar style="auto" />
     </>
