@@ -6,6 +6,7 @@ import { PostList } from "../components/post-list.styles";
 import { PostsContext } from "../../../services/posts/posts.context";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { ActivityIndicator, Colors } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components";
 
 const Loading = styled(ActivityIndicator)`
@@ -17,7 +18,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const PostsScreen = () => {
+export const PostsScreen = ({ navigation }) => {
   const { posts, isLoading, error } = useContext(PostsContext);
 
   return (
@@ -32,9 +33,13 @@ export const PostsScreen = () => {
         data={posts}
         renderItem={({ item }) => {
           return (
-            <Spacer position="bottom" size="large">
-              <PostInfoCard post={item} />
-            </Spacer>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("post-detail", { post: item })}
+            >
+              <Spacer position="bottom" size="large">
+                <PostInfoCard post={item} />
+              </Spacer>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.title}
